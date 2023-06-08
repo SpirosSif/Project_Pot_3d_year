@@ -1,9 +1,10 @@
 #include <vector>
 #include <iostream>
-
+#include <ctime>
 #include "poteridis.h"
 
 poteridis::poteridis(vector<string>& map){
+    srand(time(NULL));
     int lpot,cpot;
     do{
         lpot=rand()%(map.size()-1)+1;

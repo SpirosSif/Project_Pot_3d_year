@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <fstream>
 #include <vector>
-#include <ctime>
 #include <ncurses.h>
 
 #include "poteridis.h"
@@ -26,14 +25,16 @@ int main(int args,char** argv){
     file.close();
 
     cout<<"line "<<map.size()<<" column "<<map[1].size()<<endl;
-    srand(time(NULL));
 
     poteridis p(map);
     malfoi m(map);
     diamond d(map);
 
     for(int i=0;i<map.size();i++)
-        printw(map[i].data());
+        mvprintw(i+1,1,"%s",map[i]);
+
+    refresh();
+    getch();
     endwin();
     return 1; 
 
