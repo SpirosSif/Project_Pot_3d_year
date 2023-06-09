@@ -33,8 +33,8 @@ int main(int args,char** argv){
     for(int i=0;i<map.size();i++)
         mvprintw(i+1,1,"%s",map[i]);
 
-    refresh();
-    getch();
+    //refresh();
+    //getch();
     endwin();
     return 1; 
 
