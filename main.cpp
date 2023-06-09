@@ -30,11 +30,12 @@ int main(int args,char** argv){
     malfoi m(map);
     diamond d(map);
 
-    for(int i=0;i<map.size();i++)
-        mvprintw(i+1,1,"%s",map[i]);
-
-    //refresh();
-    //getch();
+    for(int i=0;i<map.size();i++){
+        printw(map[i].data()); printw("\n");
+    }
+    
+    refresh();
+    getch();
     endwin();
     return 1; 
 
