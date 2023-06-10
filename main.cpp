@@ -33,7 +33,13 @@ int main(int args,char** argv){
     for(int i=0;i<map.size();i++){
         printw(map[i].data()); printw("\n");
     }
+
+    m.firstmove(map);
+    while(1){//m.getescape()!=1
     
+        m.movingmalf(map);
+    }
+
     refresh();
     getch();
     endwin();
