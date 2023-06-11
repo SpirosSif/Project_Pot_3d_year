@@ -6,11 +6,20 @@
 #include "malfoi.h"
 
 malfoi::malfoi(vector<string>& map){
+    start_color();
+    init_pair(1,COLOR_GREEN,COLOR_BLACK);
+    srand(time(NULL));
     do{
         lmalf=rand()%(map.size()-1)+1;
         cmalf=rand()%(map[1].length()-1)+1;
     }while(map[lmalf][cmalf]=='*');
-    firstmove(map);
+    
+    attron(COLOR_PAIR(1));
+    // map[lmalf][cmalf]='L';
+    mvaddch(lmalf,cmalf,'L');
+    // addch('L');
+    attroff(COLOR_PAIR(1));
+    // firstmove(map);
 }
 
 void malfoi::setlmalf(int x) {lmalf=x;}
@@ -21,12 +30,14 @@ int malfoi::getlmalf() {return lmalf;}
 
 int malfoi::getcmalf() {return cmalf;}
 
+int malfoi::getescape() {return escape;}
+
 void malfoi::firstmove(vector<string>& map){
-    // curs_set(0);
+    curs_set(0);
     keypad (stdscr,TRUE);
-    move(cmalf, lmalf);
+    move(lmalf,cmalf );
     addch ('L');
-    movingmalf(map);
+    // movingmalf(map);
 }
 
 void malfoi::movingmalf(vector<string>& map)
@@ -36,24 +47,28 @@ void malfoi::movingmalf(vector<string>& map)
 // 	clear ();
    
     ch = getch ();
-    move(cmalf, lmalf);
-    addch (' ');
+    move(lmalf,cmalf);
+    addch ('.');
     switch (ch){
-        case KEY_UP : cmalf--; break;
-        case KEY_DOWN : cmalf++; break;
-        case KEY_LEFT: lmalf--; break;
-        case KEY_RIGHT: lmalf++; break;
+        case KEY_UP : 
+            if(map[lmalf-1][cmalf]!='*')
+                lmalf--; 
+            break;
+        case KEY_DOWN : 
+            if(map[lmalf+1][cmalf]!='*')
+                lmalf++; 
+            break;
+        case KEY_LEFT: 
+            if(map[lmalf][cmalf-1]!='*')
+                cmalf--; 
+            break;
+        case KEY_RIGHT: 
+            if(map[lmalf][cmalf+1]!='*')
+                cmalf++; 
+            break;
     }
-    if(map[cmalf][lmalf]=='*'){
-        switch (ch){
-            case KEY_UP : cmalf--; break;
-            case KEY_DOWN : cmalf++; break;
-            case KEY_LEFT: lmalf--; break;
-            case KEY_RIGHT: lmalf++; break;
-        }
-    }
-    move(cmalf, lmalf);
-    map[cmalf][lmalf]=' ';   
+    map[lmalf][cmalf]='.';
+    move(lmalf,cmalf);
     addch ('L');
     if(ch == 27)
         escape=1;

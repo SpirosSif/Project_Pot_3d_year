@@ -26,19 +26,18 @@ int main(int args,char** argv){
 
     cout<<"line "<<map.size()<<" column "<<map[1].size()<<endl;
 
-    poteridis p(map);
     malfoi m(map);
     diamond d(map);
-
+    poteridis p(map);
     for(int i=0;i<map.size();i++){
         printw(map[i].data()); printw("\n");
     }
 
-    m.firstmove(map);
-    while(1){//m.getescape()!=1
+    // m.firstmove(map);
+    // while(m.getescape()!=1){
     
-        m.movingmalf(map);
-    }
+    //     m.movingmalf(map);
+    // }
 
     refresh();
     getch();

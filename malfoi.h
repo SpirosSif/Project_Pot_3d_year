@@ -12,6 +12,7 @@ class malfoi{
         void setcmalf(int y);
         int getlmalf();
         int getcmalf();
+        int getescape();
         void firstmove(vector<string>& map);
         void movingmalf(vector<string>& map);
 
