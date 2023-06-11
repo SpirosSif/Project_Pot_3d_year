@@ -33,12 +33,12 @@ int main(int args,char** argv){
         printw(map[i].data()); printw("\n");
     }
 
-    // m.firstmove(map);
-    // while(m.getescape()!=1){
+    m.firstmove(map);
+    while(m.getescape()!=1){
     
-    //     m.movingmalf(map);
-    // }
-
+        m.movingmalf(map);
+    }
+    
     refresh();
     getch();
     endwin();
