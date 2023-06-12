@@ -43,9 +43,11 @@ void malfoi::firstmove(vector<string>& map){
 }
 
 void malfoi::movingmalf(vector<string>& map){
-	refresh ();
+	// refresh ();
 // 	clear ();
     ch = getch ();
+    if(ch == 27)
+        escape=1;
     move(lmalf,cmalf);
     addch ('.');
     switch (ch){
@@ -69,6 +71,5 @@ void malfoi::movingmalf(vector<string>& map){
     map[lmalf][cmalf]='.';
     move(lmalf,cmalf);
     addch ('L');
-    if(ch == 27)
-        escape=1;
+    
 }

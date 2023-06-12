@@ -27,16 +27,17 @@ int main(int args,char** argv){
     cout<<"line "<<map.size()<<" column "<<map[1].size()<<endl;
 
     malfoi m(map);
-    diamond d(map);
     poteridis p(map);
+    diamond d(map);
     for(int i=0;i<map.size();i++){
         printw(map[i].data()); printw("\n");
     }
-
+    // p.firstmove(map);
     m.firstmove(map);
     while(m.getescape()!=1){
     
         m.movingmalf(map);
+        p.movingpot(map);
     }
     
     refresh();
